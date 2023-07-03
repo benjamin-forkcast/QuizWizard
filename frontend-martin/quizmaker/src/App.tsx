@@ -2,24 +2,26 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
+import Form1 from './components/Form1';
+import Form2 from './components/Form2';
+import Form3 from './components/Form3';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AnimatePresence >
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Form1 /> /* LÄGG TILL CIRKLAR FÖR ATT NAVIGERA MELLAN FRÅGOR OCKSÅ, EN FÖR VARJE FORM_i*/} />
+            <Route path="/form2" element={<Form2 />} />
+            <Route path="/form3" element={<Form3 />} />
+          </Routes>
+        </BrowserRouter>
+      </AnimatePresence>
+    </>
   );
 }
 

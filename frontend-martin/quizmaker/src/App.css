@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  font-family: 'Roboto', sans-serif;
+  font-size: 42px;
+  font-weight: bold;
+  background-color: aqua;
+}
+
+.q-container {
+  background-color: aquamarine;
+  width: 100%;
+}
+
+.questions {
+  border: 1px solid red;
+  position: relative;
+}
