@@ -49,7 +49,7 @@
   width: 100%;
   /*height fills display*/
   height: 100%;
-  background-color: rgb(102, 255, 255);
+  background-color: rgb(179,255,242);
 
   
   /* flex-direction: column; */
@@ -61,7 +61,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: rgb(128, 170, 255);
+  background-color: rgb(255,221,204);
 }
 
 .form {
@@ -75,21 +75,21 @@
   height: 100%;
   /* border: 1px solid red; */
   font-family: 'Roboto', sans-serif;
-  font-size: 42px;
+  font-size: 30px;
   font-weight: bold;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
     0px 2px 4px rgba(0, 0, 0, 0.5),
     0px 4px 8px rgba(0, 0, 0, 0.1),
     0px 8px 16px rgba(0, 0, 0, 0.1);
   /* background-color: aquamarine; */
-  background-image: linear-gradient(rgb(128, 170, 255), rgb(102, 255, 255));
+  background-image: linear-gradient(rgb(255,221,204), rgb(179,255,242));
 }
 
 
 .navigate {
-  /* display: flex; */
+  display: flex;
   flex: 5;
-  flex-direction: row;
+  /* flex-direction: row; */
   align-items: center;
   justify-content: center;
   /* position: relative; */
