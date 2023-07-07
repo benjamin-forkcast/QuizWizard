@@ -49,9 +49,9 @@
   width: 100%;
   /*height fills display*/
   height: 100%;
-  background-color: rgb(179,255,242);
-
-  
+  background-color: rgb(45, 45, 45);
+  font-variant: small-caps;
+  font-family: 'Roboto', sans-serif;
   /* flex-direction: column; */
 }
 
@@ -61,7 +61,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: rgb(255,221,204);
+  color: rgb(255, 245, 196, 0.5);
+  background-color: rgb(51, 51, 51);
 }
 
 .form {
@@ -74,17 +75,24 @@
   width: 100%;
   height: 100%;
   /* border: 1px solid red; */
-  font-family: 'Roboto', sans-serif;
-  font-size: 30px;
-  font-weight: bold;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),
     0px 2px 4px rgba(0, 0, 0, 0.5),
     0px 4px 8px rgba(0, 0, 0, 0.1),
     0px 8px 16px rgba(0, 0, 0, 0.1);
   /* background-color: aquamarine; */
-  background-image: linear-gradient(rgb(255,221,204), rgb(179,255,242));
+  background-color: rgb(45, 45, 45);
+  background-image: url('../../quizmaker/public/stripes.png');
 }
 
+.form h1 {
+  font-size: 40px;
+  background: linear-gradient(45deg, #a68fbd, #bda6a6, #f0c2a6);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  -webkit-mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
+  mask-image: linear-gradient(to right, transparent 10%, black 50%, transparent 90%);
+}
 
 .navigate {
   display: flex;
@@ -98,6 +106,13 @@
   /* border: 1px solid red; */
 }
 
+.navigate > Button {
+  color: rgb(255, 245, 196, 0.5);
+}
+
+.navigate > Button:hover {
+  transform: scale3d(1.25, 1.25, 1);
+}
 /* .q-container {
   background-color: aquamarine;
   width: 100%;

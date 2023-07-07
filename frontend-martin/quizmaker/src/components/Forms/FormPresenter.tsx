@@ -35,6 +35,11 @@ export default function FormPresenter() {
       setForm1IsVisible(true);
       setCurrentForm(1);
     }
+    console.log("Current form: " + currentForm)
+    console.log("Form 1: " + form1IsVisible)
+    console.log("Form 2: " + form2IsVisible)
+    console.log("Form 3: " + form3IsVisible)
+    
   }
 
   function toggleBackward() {

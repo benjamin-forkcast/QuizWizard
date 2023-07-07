@@ -15,12 +15,34 @@ export default function Form1View() {
 
   return (
     <>
-      <div>
+      <h1>
         Number of Questions
-      </div>
+      </h1>
       <div>
-        <TextField id="standard-basic" value={numberOfQuestions} label="" variant="standard" type="Number" onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}/>
-        <Slider defaultValue={numberOfQuestions} step={1} marks min={1} max={20} onChange={(event: Event, value) => {setNumberOfQuestions(Number(value));}}/>
+        <TextField 
+          id="standard-basic" 
+          value={numberOfQuestions} 
+          label="" 
+          variant="standard" 
+          type="Number" 
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}
+          sx={{
+            width: '400px',
+          }}
+          />
+        <Slider 
+          defaultValue={numberOfQuestions} 
+          step={1} 
+          marks 
+          min={1} 
+          max={20} 
+          onChange={(event: Event, value) => {setNumberOfQuestions(Number(value));}} 
+          // style={{'marginTop':'10px'}}
+          sx={{
+            marginTop: '10px',
+            color: 'rgb(255, 245, 196)',
+            }}
+          />
       </div>
     </>
   );
