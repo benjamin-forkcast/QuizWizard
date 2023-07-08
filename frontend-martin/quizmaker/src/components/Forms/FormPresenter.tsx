@@ -6,6 +6,11 @@ import Form1View from "./Form1View";
 import Form2View from "./Form2View";
 import Form3View from "./Form3View";
 
+import DynamicFormIcon from '@mui/icons-material/DynamicForm';
+import SportsScoreIcon from '@mui/icons-material/SportsScore';
+import StorageIcon from '@mui/icons-material/Storage';
+import Person2Icon from '@mui/icons-material/Person2';
+
 import IconButton from '@mui/material/IconButton';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -86,7 +91,10 @@ export default function FormPresenter() {
   return (
     <div className="forms-container">
       <div className="menuBar">
-        <h1>Navbar to come</h1>
+        <div><div><DynamicFormIcon/></div><div>Create Quiz</div></div>
+        <div><div><SportsScoreIcon/></div><div>Top Quizes</div></div>
+        <div><div><StorageIcon/></div><div>Quiz History</div></div>
+        <div><div><Person2Icon/></div><div>Profile</div></div>
       </div>
       <div className="form">
         <AnimatePresence initial={false}>
@@ -124,6 +132,15 @@ export default function FormPresenter() {
             </motion.div>
           )}
         </AnimatePresence>
+        <div className='light x1'></div>
+        <div className='light x2'></div>
+        <div className='light x3'></div>
+        <div className='light x4'></div>
+        <div className='light x5'></div>
+        <div className='light x6'></div>
+        <div className='light x7'></div>
+        <div className='light x8'></div>
+        <div className='light x9'></div>
       </div>
       <div className="navigate">
         <IconButton aria-label="navigate-left"><ChevronLeftIcon onClick={toggleBackward}/></IconButton>
@@ -132,6 +149,7 @@ export default function FormPresenter() {
         <IconButton aria-label="navigate-3rd">{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
         <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
+      
     </div>
   );
 }
