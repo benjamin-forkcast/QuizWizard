@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import TextField from '@mui/material/TextField';
 
@@ -28,6 +28,12 @@ export default function Form2View() {
     }
   };
 
+  const handleRemoveFilter = (index: number) => {
+    const newFilters = [...filters];
+    newFilters.splice(index, 1);
+    setFilters(newFilters);
+  };
+
   return (
     <div>
       <div>
@@ -35,11 +41,14 @@ export default function Form2View() {
         <div><TextField id="standard-basic" label="Pick a theme" variant="standard" value={theme} onChange={handleThemeChange} onKeyDown={handleFiltersChange} sx={{'width':'500px'}}/></div>
       </div>
       <div className="themes">
+      <AnimatePresence initial={false}>
         {filters.map((filter, index) => (
-          <motion.div key={index} initial={{opacity: 0}} animate={{opacity: 0.6}} className="bubble" style={{ backgroundColor: filter.color }}>
+          <motion.div key={index} initial={{opacity: 0, scale: 0.1}} animate={{opacity: 0.6, scale:[0.5, 1.3, 1]}} exit={{opacity: 0, scale:[1.1, 0.5]}} transition={{ type: "spring", stiffness: 100 }} className="bubble" style={{ backgroundColor: filter.color }}>
             {filter.theme}
+            <button className='remove-icon' onClick={() => handleRemoveFilter(index)}>x</button>
           </motion.div>
         ))}
+        </AnimatePresence>
       </div>
     </div>
 );

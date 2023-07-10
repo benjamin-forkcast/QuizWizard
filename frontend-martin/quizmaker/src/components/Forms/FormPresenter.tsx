@@ -194,7 +194,9 @@ export default function FormPresenter() {
         <IconButton aria-label="navigate-3rd">{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
         <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
-      
+      <div>
+        Progress Bar
+      </div>
     </div>
   );
 }

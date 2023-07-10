@@ -346,12 +346,13 @@ left: 85%;
 
 .form h1 {
   font-size: 40px;
+  text-align: center;
   background: linear-gradient(45deg, #a68fbd, #bda6a6, #f0c2a6);
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  -webkit-mask-image: linear-gradient(to right, transparent 2%, black 80%, transparent 99%);
-  mask-image: linear-gradient(to right, transparent 2%, black 80%, transparent 99%);
+  -webkit-mask-image: linear-gradient(to right, transparent -20%, black 80%, transparent 99%);
+  mask-image: linear-gradient(to right, transparent -20%, black 80%, transparent 99%);
 }
 
 .navigate {
@@ -408,6 +409,26 @@ left: 85%;
   opacity: 0.6;
   font-weight: bold;
   margin: 10px;
-  /* position: relative; */
+  position: relative;
   padding: 10px;
+  overflow: visible;
+  white-space: nowrap;
+  max-width: 100%;
+  border: white 1px solid;
+}
+
+.bubble:hover .remove-icon {
+  display: block;
+}
+
+.remove-icon {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  display: none;
+  /* padding: 5px; */
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 6px;
+  background: white;
 }
