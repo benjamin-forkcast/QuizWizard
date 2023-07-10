@@ -18,6 +18,11 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 
 export default function FormPresenter() {
+
+  const [createQuizVisible, setCreateQuizVisible] = useState(false);
+  const [topQuizVisible, setTopQuizVisible] = useState(false);
+  const [quizHistoryVisible, setQuizHistoryVisible] = useState(false);
+  const [profileVisible, setProfileVisible] = useState(false);
   const [form1IsVisible, setForm1IsVisible] = useState(true);
   const [form2IsVisible, setForm2IsVisible] = useState(false);
   const [form3IsVisible, setForm3IsVisible] = useState(false);
@@ -91,10 +96,50 @@ export default function FormPresenter() {
   return (
     <div className="forms-container">
       <div className="menuBar">
-        <div><div><DynamicFormIcon/></div><div>Create Quiz</div></div>
-        <div><div><SportsScoreIcon/></div><div>Top Quizes</div></div>
-        <div><div><StorageIcon/></div><div>Quiz History</div></div>
-        <div><div><Person2Icon/></div><div>Profile</div></div>
+        <div 
+          onMouseEnter={() => setCreateQuizVisible(true)} 
+          onMouseLeave={() => setCreateQuizVisible(false)}>
+            <div><DynamicFormIcon/></div>
+              <AnimatePresence initial={false}>{createQuizVisible && <motion.div
+                                      key={4}
+                                      initial={{ y: -10, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      exit={{ y: -10, opacity: 0 }}>Create Quiz</motion.div>}
+              </AnimatePresence>
+        </div>
+        <div 
+          onMouseEnter={() => setTopQuizVisible(true)} 
+          onMouseLeave={() => setTopQuizVisible(false)}>
+            <div><SportsScoreIcon/></div>
+              <AnimatePresence initial={false}>{topQuizVisible && <motion.div
+                                      key={4}
+                                      initial={{ y: -10, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      exit={{ y: -10, opacity: 0 }}>Top Quizes</motion.div>}
+              </AnimatePresence>
+        </div>
+        <div 
+          onMouseEnter={() => setQuizHistoryVisible(true)} 
+          onMouseLeave={() => setQuizHistoryVisible(false)}>
+            <div><StorageIcon/></div>
+              <AnimatePresence initial={false}>{quizHistoryVisible && <motion.div
+                                      key={4}
+                                      initial={{ y: -10, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      exit={{ y: -10, opacity: 0 }}>Quiz History</motion.div>}
+              </AnimatePresence>
+        </div>
+        <div 
+          onMouseEnter={() => setProfileVisible(true)} 
+          onMouseLeave={() => setProfileVisible(false)}>
+            <div><Person2Icon/></div>
+              <AnimatePresence initial={false}>{profileVisible && <motion.div
+                                      key={4}
+                                      initial={{ y: -10, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      exit={{ y: -10, opacity: 0 }}>Profile</motion.div>}
+              </AnimatePresence>
+        </div>
       </div>
       <div className="form">
         <AnimatePresence initial={false}>

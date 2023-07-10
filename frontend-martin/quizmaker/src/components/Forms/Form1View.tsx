@@ -7,11 +7,9 @@ import TextField from '@mui/material/TextField';
 import Slider from '@mui/material/Slider';
 
 export default function Form1View() {
-  
 
-  const [isVisible, setIsVisible] = useState(false);
+  //Custom event som skickar upp värdet till FormPresenter när modellen ska uppdateras?
   const [numberOfQuestions, setNumberOfQuestions] = useState(1);
-
 
   return (
     <>
