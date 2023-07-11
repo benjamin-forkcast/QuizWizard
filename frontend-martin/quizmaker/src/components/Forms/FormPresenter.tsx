@@ -5,6 +5,7 @@ import { useState } from "react";
 import Form1View from "./Form1View";
 import Form2View from "./Form2View";
 import Form3View from "./Form3View";
+import Form4View from "./Form4View";
 
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
@@ -26,6 +27,7 @@ export default function FormPresenter() {
   const [form1IsVisible, setForm1IsVisible] = useState(true);
   const [form2IsVisible, setForm2IsVisible] = useState(false);
   const [form3IsVisible, setForm3IsVisible] = useState(false);
+  const [form4IsVisible, setForm4IsVisible] = useState(false);
   const [exitAnimation, setExitAnimation] = useState(-300);
   const [currentForm, setCurrentForm] = useState(1);
   // let exitAnimation : number = -300;
@@ -42,13 +44,17 @@ export default function FormPresenter() {
       setCurrentForm(3);
     } else if (form3IsVisible) {
       setForm3IsVisible(false);
+      setForm4IsVisible(true);
+      setCurrentForm(4);
+    } else if (form4IsVisible) {
+      setForm4IsVisible(false);
       setForm1IsVisible(true);
       setCurrentForm(1);
     }
-    console.log("Current form: " + currentForm)
-    console.log("Form 1: " + form1IsVisible)
-    console.log("Form 2: " + form2IsVisible)
-    console.log("Form 3: " + form3IsVisible)
+    // console.log("Current form: " + currentForm)
+    // console.log("Form 1: " + form1IsVisible)
+    // console.log("Form 2: " + form2IsVisible)
+    // console.log("Form 3: " + form3IsVisible)
     
   }
 
@@ -56,8 +62,8 @@ export default function FormPresenter() {
     setExitAnimation(-300);
     if (form1IsVisible) {
       setForm1IsVisible(false);
-      setForm3IsVisible(true);
-      setCurrentForm(3);
+      setForm4IsVisible(true);
+      setCurrentForm(4);
     } else if (form2IsVisible) {
       setForm2IsVisible(false);
       setForm1IsVisible(true);
@@ -66,6 +72,10 @@ export default function FormPresenter() {
       setForm3IsVisible(false);
       setForm2IsVisible(true);
       setCurrentForm(2);
+    } else if (form4IsVisible) {
+      setForm4IsVisible(false);
+      setForm3IsVisible(true);
+      setCurrentForm(3);
     }
   }
 
@@ -79,17 +89,26 @@ export default function FormPresenter() {
       setForm1IsVisible(true);
       setForm2IsVisible(false);
       setForm3IsVisible(false);
+      setForm4IsVisible(false);
       setCurrentForm(1);
     } else if (formNumber === 2) {
       setForm1IsVisible(false);
       setForm2IsVisible(true);
       setForm3IsVisible(false);
+      setForm4IsVisible(false);
       setCurrentForm(2);
     } else if (formNumber === 3) {
       setForm1IsVisible(false);
       setForm2IsVisible(false);
       setForm3IsVisible(true);
+      setForm4IsVisible(false);
       setCurrentForm(3);
+    } else if (formNumber === 4) {
+      setForm1IsVisible(false);
+      setForm2IsVisible(false);
+      setForm3IsVisible(false);
+      setForm4IsVisible(true);
+      setCurrentForm(4);
     }
   }
 
@@ -176,6 +195,17 @@ export default function FormPresenter() {
               <Form3View />
             </motion.div>
           )}
+          {form4IsVisible && (
+            <motion.div
+              key={4}
+              initial={{ x: exitAnimation, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="questions"
+            >
+              <Form4View />
+            </motion.div>
+          )}
         </AnimatePresence>
         <div className='light x1'></div>
         <div className='light x2'></div>
@@ -192,6 +222,7 @@ export default function FormPresenter() {
         <IconButton aria-label="navigate-1st">{currentForm===1&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(1)}/>}</IconButton>
         <IconButton aria-label="navigate-2nd">{currentForm===2&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(2)}/>}</IconButton>
         <IconButton aria-label="navigate-3rd">{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
+        <IconButton aria-label="navigate-4th">{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
         <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
       <div>

@@ -12,7 +12,7 @@ export default function Form3View() {
   return (
     <div>
       <h1>
-        Participants country of origin
+        Participants Country of Origin
       </h1>
       <div>
         <Autocomplete
