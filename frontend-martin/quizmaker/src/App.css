@@ -433,6 +433,49 @@ left: 85%;
   background: white;
 }
 
+.form3 {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkBox {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  border-radius: 4px;
+  margin-left: 6px;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.checkBox:hover {
+  background-color: rgba(58, 205, 58, 0.723);
+  transform: scale3d(1.1, 1, 1);
+}
+
+.checkBoxClicked {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.301);
+  border-radius: 4px;
+  margin-left: 6px;
+  width: 80px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(58, 205, 58, 0.723);
+  transition: 0.5s;
+}
+
+@keyframes flicker {
+  0% { background-color: initial; }
+  50% { background-color: red; }
+  100% { background-color: initial; }
+}
+
+.invalid-selection {
+  animation: flicker 0.5s ease-in-out;
+}
+
 .questionFormats {
   display: flex;
   flex-direction: row;
