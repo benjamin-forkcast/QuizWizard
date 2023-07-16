@@ -6,6 +6,8 @@ import { useState } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 
+import './Form4.css'
+
 export default function Form4View() {
   const [formats, setFormats] = useState<string[]>([]);
   const [format1Set, setFormat1Set] = useState<boolean>(false);

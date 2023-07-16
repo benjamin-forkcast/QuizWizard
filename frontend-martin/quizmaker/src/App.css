@@ -4,18 +4,27 @@
   width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  --menubar: rgb(45,45,45);
+  --main-background: radial-gradient(#a23982,#1f1013);
+  --pink: #a23982;
+  --off-white: rgb(255, 245, 196, 1);
+  --green: rgb(23, 177, 105);
+  --red: rgb(196, 30, 58);
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+} */
+
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -24,20 +33,20 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
-@keyframes App-logo-spin {
+/* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 .forms-container {
   display: flex;
@@ -49,7 +58,7 @@
   width: 100%;
   /*height fills display*/
   height: 100%;
-  background: radial-gradient(#a23982,#1f1013);
+  background: var(--main-background);
   font-variant: small-caps;
   font-family: 'Roboto', sans-serif;
   /* flex-direction: column; */
@@ -67,7 +76,7 @@
   /* align-items: center; */
   padding-top: 10px;
   color: rgba(255, 255, 255, 0.866);
-  background-color: rgb(45, 45, 45);
+  background-color: var(--menubar);
   
 }
 
@@ -80,7 +89,7 @@
 }
 
 .menuBar > div:hover {
-  color: #a23982;
+  color: var(--pink);
   cursor: pointer;
   justify-content: center;
   align-items: center;
@@ -107,7 +116,7 @@
   margin: 0;
   height: 100vh;
   font-weight: 100;
-  background: radial-gradient(#a23982,#1f1013);
+  background: var(--main-background);
   -webkit-overflow-Y: hidden;
   -moz-overflow-Y: hidden;
   -o-overflow-Y: hidden;
@@ -374,7 +383,7 @@ left: 85%;
 
 .navigate > Button:hover {
   transform: scale3d(1.25, 1.25, 1);
-  color: rgb(255, 245, 196, 1);
+  color: var(--off-white);
   /*animation duration*/
   /* transition: 0.5s; */
 }
@@ -388,118 +397,5 @@ left: 85%;
   position: absolute;
 }
 
-.form2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  
-}
 
-.themes {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  overflow-x:auto;
-  width: 500px;
-}
 
-.bubble {
-  border-radius: 12px;
-  opacity: 0.6;
-  font-weight: bold;
-  margin: 10px;
-  position: relative;
-  padding: 10px;
-  overflow: visible;
-  white-space: nowrap;
-  max-width: 100%;
-  border: white 1px solid;
-}
-
-.bubble:hover .remove-icon {
-  display: block;
-}
-
-.remove-icon {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  display: none;
-  /* padding: 5px; */
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 6px;
-  background: white;
-}
-
-.form3 {
-  display: flex;
-  flex-direction: row;
-}
-
-.checkBox {
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.301);
-  border-radius: 4px;
-  margin-left: 6px;
-  width: 80px;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
-}
-
-.checkBox:hover {
-  background-color: rgba(58, 205, 58, 0.723);
-  transform: scale3d(1.1, 1, 1);
-}
-
-.checkBoxClicked {
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.301);
-  border-radius: 4px;
-  margin-left: 6px;
-  width: 80px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(58, 205, 58, 0.723);
-  transition: 0.5s;
-}
-
-@keyframes flicker {
-  0% { background-color: initial; }
-  50% { background-color: red; }
-  100% { background-color: initial; }
-}
-
-.invalid-selection {
-  animation: flicker 0.5s ease-in-out;
-}
-
-.questionFormats {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-.questionFormats > div {
-  border: 1px solid white;
-  padding: 20px;
-  border-radius: 5px;
-  margin: 10px;
-  transition: 0.5s;
-}
-
-.questionFormatsNotClicked:hover {
-  border: 1px solid rgb(255, 245, 196);
-  scale: 1.1;
-  background-color: rgba(58, 205, 58, 0.723);
-}
-
-.questionFormatClicked {
-  border: 1px solid rgb(255, 245, 196);
-  scale: 1.15;
-  background-color: rgba(58, 205, 58, 0.723);
-}

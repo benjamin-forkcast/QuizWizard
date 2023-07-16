@@ -6,6 +6,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import CheckIcon from '@mui/icons-material/Check';
 
+import './Form3.css';
+
 export default function Form3View() {
 
   const [country, setCountry] = React.useState<string>("");
@@ -13,8 +15,13 @@ export default function Form3View() {
   const [invalidSelection, setInvalidSelection] = React.useState(false);
   const invalidSelectionTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
-  const countryAdded = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCountry(event.target.value);
+  const countryAdded = (event: React.SyntheticEvent, value: string) => {
+    setCountry(value);
+    console.log(value)
+  }
+
+  const test = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log("test")
     console.log(country)
   }
   
@@ -54,13 +61,19 @@ export default function Form3View() {
         Participants Country of Origin
       </h1>
       <div className='form3'>
-        <Autocomplete
+        {!countrySet ? <Autocomplete
           disablePortal
           id="countries"
           options={countries}
           sx={{ width: 500 }}
-          renderInput={(params) => <TextField {...params} label="Pick a country" value={country} onChange={countryAdded}/>}
-        />
+          renderInput={(params) => <TextField {...params} label="Pick a country" value={country}/>}
+          onInputChange={countryAdded}
+        /> : 
+        <motion.div 
+        className='setCountry'
+        key={3}
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1 , scale: [1.1, 1] }} transition={{ duration: 0.3 }}>{country}</motion.div>}
         <div className={`${countrySet ? 'checkBoxClicked':'checkBox'} ${invalidSelection ? 'invalid-selection' : ''}`} onClick={selectCountry}><CheckIcon/></div>
       </div>
     </div>

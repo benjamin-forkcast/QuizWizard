@@ -2,10 +2,10 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-import Form1View from "./Form1View";
-import Form2View from "./Form2View";
-import Form3View from "./Form3View";
-import Form4View from "./Form4View";
+import Form1View from "./Form1/Form1View";
+import Form2View from "./Form2/Form2View";
+import Form3View from "./Form3/Form3View";
+import Form4View from "./Form4/Form4View";
 
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';

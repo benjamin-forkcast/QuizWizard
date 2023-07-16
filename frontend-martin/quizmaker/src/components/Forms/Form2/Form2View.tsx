@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import './Form2.css'
 
 import TextField from '@mui/material/TextField';
 
@@ -37,7 +38,7 @@ export default function Form2View() {
   return (
     <div>
       <div>
-        <h1 style={{'textAlign':'center'}}>Quiz Theme</h1>
+        <h1 style={{'textAlign':'center'}}>Quiz Theme - Press to delete</h1>
         <div><TextField id="standard-basic" label="Pick a theme" variant="standard" value={theme} onChange={handleThemeChange} onKeyDown={handleFiltersChange} sx={{'width':'500px'}}/></div>
       </div>
       <div className="themes">
