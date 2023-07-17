@@ -32,17 +32,18 @@ export default function Form1View() {
       <h1>
         Number of Questions
       </h1>
-      <div>
+      <div className='numberInput'>
         <TextField 
-          id="standard-basic" 
+          id="outlined-basic" 
           value={numberOfQuestions} 
           label="" 
-          variant="standard" 
+          variant="outlined" 
           type="Number" 
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}
           sx={{
-            width: '400px',
+            width: '200px',
           }}
+          
           />
         <div className='arrows'>
           <IconButton aria-label='decrease-much' onClick={() => changeNumberOfQuestions(-10)}><KeyboardDoubleArrowLeftIcon/> </IconButton>

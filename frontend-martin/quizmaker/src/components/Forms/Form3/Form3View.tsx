@@ -73,7 +73,7 @@ export default function Form3View() {
         className='setCountry'
         key={3}
         initial={{ opacity: 0, scale: 0.7 }}
-        animate={{ opacity: 1 , scale: [1.1, 1] }} transition={{ duration: 0.3 }}>{country}</motion.div>}
+        animate={{ opacity: 1 , scale: [0.8, 0.9, 1.03, 1] }} transition={{ duration: 0.5 }}>{country}</motion.div>}
         <div className={`${countrySet ? 'checkBoxClicked':'checkBox'} ${invalidSelection ? 'invalid-selection' : ''}`} onClick={selectCountry}><CheckIcon/></div>
       </div>
     </div>
