@@ -16,14 +16,14 @@ import { IconButton } from '@mui/material';
 export default function Form1View() {
 
   //Custom event som skickar upp värdet till FormPresenter när modellen ska uppdateras?
-  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(NaN);
 
   const changeNumberOfQuestions = (change: number) => {
     if (numberOfQuestions + change >= 0) {
       setNumberOfQuestions(numberOfQuestions + change);
     }
     else {
-      setNumberOfQuestions(0);
+      setNumberOfQuestions(NaN);
     }
   }
 
@@ -33,18 +33,7 @@ export default function Form1View() {
         Number of Questions
       </h1>
       <div className='numberInput'>
-        <TextField 
-          id="outlined-basic" 
-          value={numberOfQuestions} 
-          label="" 
-          variant="outlined" 
-          type="Number" 
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}
-          sx={{
-            width: '200px',
-          }}
-          
-          />
+          <input className='nInput' type="number" value={numberOfQuestions} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}/>
         <div className='arrows'>
           <IconButton aria-label='decrease-much' onClick={() => changeNumberOfQuestions(-10)}><KeyboardDoubleArrowLeftIcon/> </IconButton>
           <IconButton aria-label='decrease' onClick={() => changeNumberOfQuestions(-1)}><KeyboardArrowLeftIcon/> </IconButton>

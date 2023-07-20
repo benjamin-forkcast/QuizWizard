@@ -19,7 +19,7 @@
 
 .checkBox {
     display: flex;
-    border: 1px solid rgba(0, 0, 0, 0.301);
+    border: var(--border);
     border-radius: 4px;
     margin-left: 6px;
     width: 80px;

@@ -7,6 +7,26 @@
     width: 100%;
 }
 
+.nInput {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 156px;
+    background-color: transparent;
+    border: var(--border);
+    border-radius: 3px;
+    font-size: 50px;
+    text-align: center;
+    color: var(--off-white);
+    box-shadow: var(--box-shadow);
+    transition: 0.5s;
+}
+
+.nInput:hover {
+    border: var(--off-white);
+}
+
 .arrows {
     display: flex;
     justify-content: space-evenly;
