@@ -16,14 +16,14 @@ import { IconButton } from '@mui/material';
 export default function Form1View() {
 
   //Custom event som skickar upp värdet till FormPresenter när modellen ska uppdateras?
-  const [numberOfQuestions, setNumberOfQuestions] = useState(NaN);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(1);
 
   const changeNumberOfQuestions = (change: number) => {
-    if (numberOfQuestions + change >= 0) {
+    if (numberOfQuestions + change >= 1) {
       setNumberOfQuestions(numberOfQuestions + change);
     }
     else {
-      setNumberOfQuestions(NaN);
+      setNumberOfQuestions(1);
     }
   }
 

@@ -24,7 +24,8 @@
     overflow: visible;
     white-space: nowrap;
     max-width: 100%;
-    border: white 1px solid;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
 }
 
 .bubble:hover .remove-icon {
@@ -41,4 +42,5 @@
     border: 1px solid black;
     border-radius: 6px;
     background: white;
+    transition: 0.5s;
 }
