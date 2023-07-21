@@ -22,25 +22,59 @@
     position: relative;
     padding: 10px;
     overflow: visible;
-    white-space: nowrap;
     max-width: 100%;
     box-shadow: var(--box-shadow);
     border: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bubble:hover .remove-icon {
-    display: block;
+.bubbleRemove {
+    border-radius: 12px;
+    opacity: 0.6;
+    font-weight: bold;
+    margin: 10px;
+    position: relative;
+    padding: 10px;
+    overflow: visible;
+    max-width: 100%;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scale: 1.1;
+    background-color: var(--red) !important;
+    border-color: var(--border);
+    /*transition for scale and background-color*/
+    transition: all 0.7s ease-in-out;
 }
 
-.remove-icon {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    display: none;
-    /* padding: 5px; */
-    cursor: pointer;
-    border: 1px solid black;
-    border-radius: 6px;
-    background: white;
-    transition: 0.5s;
+.text-container {
+    flex-grow: 1;
+    text-align: center;
+    position: relative;
 }
+
+.remove-text {
+    /* visibility: hidden; */
+    position: absolute; 
+    top: -10px;
+    font-size: 30px;
+}
+
+.hidden {
+    opacity: 0 !important;
+}
+
+.visible {
+    opacity: 1 !important;
+}
+
+.theme-text, .remove-text {
+    width: 100%;
+    /* transition: opacity 0.3s ease-in-out; */
+}
+
+/* .bu */

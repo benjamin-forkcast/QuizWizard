@@ -18,9 +18,18 @@ export default function Form1View() {
   //Custom event som skickar upp värdet till FormPresenter när modellen ska uppdateras?
   const [numberOfQuestions, setNumberOfQuestions] = useState(1);
 
-  const changeNumberOfQuestions = (change: number) => {
+  const changeNumberOfQuestionsButtons = (change: number) => {
     if (numberOfQuestions + change >= 1) {
       setNumberOfQuestions(numberOfQuestions + change);
+    }
+    else {
+      setNumberOfQuestions(1);
+    }
+  }
+
+  const changeNumberOfQuestionsInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(event.target.value) >= 1) {
+      setNumberOfQuestions(Number(event.target.value));
     }
     else {
       setNumberOfQuestions(1);
@@ -33,12 +42,12 @@ export default function Form1View() {
         Number of Questions
       </h1>
       <div className='numberInput'>
-          <input className='nInput' type="number" value={numberOfQuestions} onChange={(event: React.ChangeEvent<HTMLInputElement>) => {setNumberOfQuestions(Number(event.target.value));}}/>
+          <input className='nInput' type="number" value={numberOfQuestions} onChange={changeNumberOfQuestionsInput}/>
         <div className='arrows'>
-          <IconButton aria-label='decrease-much' onClick={() => changeNumberOfQuestions(-10)}><KeyboardDoubleArrowLeftIcon/> </IconButton>
-          <IconButton aria-label='decrease' onClick={() => changeNumberOfQuestions(-1)}><KeyboardArrowLeftIcon/> </IconButton>
-          <IconButton aria-label='increase' onClick={() => changeNumberOfQuestions(1)}><KeyboardArrowRightIcon/> </IconButton>
-          <IconButton aria-label='increase-much' onClick={() => changeNumberOfQuestions(10)}><KeyboardDoubleArrowRightIcon/> </IconButton>
+          <IconButton aria-label='decrease-much' onClick={() => changeNumberOfQuestionsButtons(-10)}><KeyboardDoubleArrowLeftIcon/> </IconButton>
+          <IconButton aria-label='decrease' onClick={() => changeNumberOfQuestionsButtons(-1)}><KeyboardArrowLeftIcon/> </IconButton>
+          <IconButton aria-label='increase' onClick={() => changeNumberOfQuestionsButtons(1)}><KeyboardArrowRightIcon/> </IconButton>
+          <IconButton aria-label='increase-much' onClick={() => changeNumberOfQuestionsButtons(10)}><KeyboardDoubleArrowRightIcon/> </IconButton>
         </div>
       </div>
     </>
