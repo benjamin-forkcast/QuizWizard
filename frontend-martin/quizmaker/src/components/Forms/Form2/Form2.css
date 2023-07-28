@@ -55,6 +55,8 @@
     flex-grow: 1;
     text-align: center;
     position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
 .remove-text {
@@ -62,6 +64,14 @@
     position: absolute; 
     top: -10px;
     font-size: 30px;
+}
+
+.theme-text {
+    position: relative;
+    top: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .hidden {
@@ -77,4 +87,7 @@
     /* transition: opacity 0.3s ease-in-out; */
 }
 
+.remove-text {
+    height: 15px;
+}
 /* .bu */

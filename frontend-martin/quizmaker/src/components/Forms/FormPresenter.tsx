@@ -264,7 +264,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form6View />
+              <Form6View/>
             </motion.div>
           )}
         </AnimatePresence>

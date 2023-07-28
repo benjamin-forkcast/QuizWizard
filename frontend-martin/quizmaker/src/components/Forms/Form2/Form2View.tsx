@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./Form2.css";
 
 import TextField from "@mui/material/TextField";
+import IconButton from '@mui/material/IconButton';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const colors = [
   "rgb(162, 57, 130)",
@@ -44,6 +46,7 @@ export default function Form2View() {
     }
   };
 
+
   const handleRemoveIconVisible = () => {
     if (removeIconVisible === true) {
       setRemoveIconVisible(false);
@@ -54,8 +57,11 @@ export default function Form2View() {
   };
 
   const handleRemoveFilter = (index: number) => {
+    console.log(index);
     const newFilters = [...filters];
     newFilters.splice(index, 1);
+    console.log("filters ", filters);
+    console.log("new filters ", newFilters);
     setFilters(newFilters);
   };
 
@@ -68,7 +74,7 @@ export default function Form2View() {
   return (
     <div>
       <div>
-        <h1 style={{ textAlign: "center" }}>Quiz Theme - Press to delete</h1>
+        <h1 style={{ textAlign: "center" }}>Quiz Theme</h1>
         <div>
           <TextField
             id="standard-basic"
@@ -93,26 +99,11 @@ export default function Form2View() {
               className={filter.showRemove ? "bubbleRemove" : "bubble"}
               style={{ backgroundColor: filter.color }}
               onClick={() => handleBubbleClick(index)}
-              // onMouseEnter={handleRemoveIconVisible}
-              // onMouseLeave={handleRemoveIconVisible}
             >
                <div className="text-container">
                   <div className={`theme-text ${filter.showRemove ? 'hidden' : 'visible'}`}>{filter.theme}</div>
-                  <div className={`remove-text ${filter.showRemove ? 'visible' : 'hidden'}`} onClick={() => handleRemoveFilter(index)}>x</div>
+                  <IconButton className={`remove-text ${filter.showRemove ? 'visible' : 'hidden'}`}><HighlightOffIcon onClick={(event) => { event.stopPropagation(); if (filter.showRemove) {handleRemoveFilter(index)} }}/></IconButton>
                 </div>
-              {/* {<motion.button
-                className="remove-icon"
-                onClick={() => handleRemoveFilter(index)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileHover={{
-                  scale: 1.1,
-                  transition: { duration: 1 },
-                }}
-                whileTap={{ scale: 0.9 }}
-              >
-                x
-              </motion.button>} */}
             </motion.div>
           ))}
         </AnimatePresence>
