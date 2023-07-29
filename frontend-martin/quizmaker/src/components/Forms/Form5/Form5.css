@@ -1,0 +1,31 @@
+.difficultyBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .difficultyBox > div {
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    transition: 0.5s;
+  }
+  
+  .difficultyNotClicked:hover {
+    border: 1px solid var(--off-white);
+    scale: 1.1;
+    background-color: var(--green);
+  }
+  
+  .difficultyClicked {
+    border: 1px solid var(--off-white);
+    scale: 1.15;
+    background-color: var(--green);
+  }
+
+  #nonHover {
+    opacity: 0.3;
+  }

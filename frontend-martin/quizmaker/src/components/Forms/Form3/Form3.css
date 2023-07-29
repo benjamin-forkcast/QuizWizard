@@ -1,0 +1,57 @@
+.form3 {
+    display: flex;
+    flex-direction: row;
+}
+
+.setCountry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 56px;
+    border: 1px solid rgb(77, 77, 77, 0.5);
+    border-radius: 4px;
+    font-weight: 400; 
+    font-size: 25px;
+    text-shadow: 0px 0px 10px rgba(103, 25, 221, 0.2);
+    background-color: var(--green);
+}
+
+.checkBox {
+    display: flex;
+    border: var(--border);
+    border-radius: 4px;
+    margin-left: 6px;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+  }
+  
+  .checkBox:hover {
+    background-color: var(--green);
+    transform: scale3d(1.1, 1, 1);
+  }
+  
+  .checkBoxClicked {
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    border-radius: 4px;
+    margin-left: 6px;
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--green);
+    transition: 0.5s;
+  }
+  
+  @keyframes flicker {
+    0% { background-color: initial; }
+    50% { background-color: var(--red); }
+    100% { background-color: initial; }
+  }
+  
+  .invalid-selection {
+    animation: flicker 0.5s ease-in-out;
+  }
+  
