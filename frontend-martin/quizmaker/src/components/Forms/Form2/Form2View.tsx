@@ -28,9 +28,17 @@ type Filter = {
   showRemove: boolean;
 };
 
-export default function Form2View() {
+type Form2ViewProps = {
+  themes: string[];
+  setThemes: (themes: string[]) => void;
+};
+
+export default function Form2View({
+  themes,
+  setThemes,
+}: Form2ViewProps) {
   const [theme, setTheme] = React.useState("");
-  const [filters, setFilters] = React.useState<Filter[]>([]);
+  const [filters, setFilters] = React.useState<Filter[]>(themes.map((theme) => ({ theme, color: colors[Math.floor(Math.random() * colors.length)], showRemove: false })));
   const [removeIconVisible, setRemoveIconVisible] =
     React.useState<boolean>(false);
 
@@ -42,6 +50,7 @@ export default function Form2View() {
     if (theme !== "" && event.key === "Enter") {
       const color = colors[Math.floor(Math.random() * colors.length)];
       setFilters([...filters, { theme, color, showRemove: false }]);
+      setThemes([...themes, theme]);
       setTheme("");
     }
   };
@@ -63,6 +72,7 @@ export default function Form2View() {
     console.log("filters ", filters);
     console.log("new filters ", newFilters);
     setFilters(newFilters);
+    setThemes(newFilters.map((filter) => filter.theme));
   };
 
   const handleBubbleClick = (index: number) => {

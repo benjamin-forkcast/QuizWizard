@@ -9,16 +9,31 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
+type Form7ViewProps = {
+    req: string;
+    setReq: (request: string) => void;
+};
 
-export default function Form2View() {
-  const [request, setRequest] = React.useState("");
+export default function Form2View({
+    req,
+    setReq,
+}: Form7ViewProps) {
+  const [request, setRequest] = React.useState(req);
   const [requestSet, setRequestSet] = React.useState<boolean>(false);
   const [invalidSelection, setInvalidSelection] = React.useState(false);
   const [showInfo, setShowInfo] = React.useState(false);
   const invalidSelectionTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
+    // only initial render
+    React.useEffect(() => {
+        if (req) {
+            setRequestSet(true);
+        }
+    }, []);
+
   const handleRequestChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRequest(event.target.value);
+    setReq(event.target.value);
   };
 
   const selectRequest = (
@@ -34,6 +49,7 @@ export default function Form2View() {
     } else if (requestSet) {
         setRequestSet(false);
         setRequest("");
+        setReq("");
         setInvalidSelection(false);
     } else {
       setInvalidSelection(true);

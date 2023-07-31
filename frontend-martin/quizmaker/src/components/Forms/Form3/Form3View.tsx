@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -9,15 +9,31 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import './Form3.css';
 
-export default function Form3View() {
+type Form3ViewProps = {
+  ctry: string;
+  setCtry: (ctry: string) => void;
+};
 
-  const [country, setCountry] = React.useState<string>("");
+export default function Form3View({
+  ctry,
+  setCtry,
+}: Form3ViewProps) {
+
+  const [country, setCountry] = React.useState<string>(ctry);
   const [countrySet, setCountrySet] = React.useState<boolean>(false);
   const [invalidSelection, setInvalidSelection] = React.useState(false);
   const invalidSelectionTimeout = React.useRef<NodeJS.Timeout | null>(null);
 
+  // only initial render
+  useEffect(() => {
+    if (ctry) {
+      setCountrySet(true);
+    }
+  }, [ctry]);
+
   const countryAdded = (event: React.SyntheticEvent, value: string) => {
     setCountry(value);
+    setCtry(value);
     console.log(value)
   }
 
@@ -41,6 +57,7 @@ export default function Form3View() {
     } else if (countrySet) {
       setCountrySet(false);
       setCountry("");
+      setCtry("");
       setInvalidSelection(false);
     } else {
       setInvalidSelection(true);

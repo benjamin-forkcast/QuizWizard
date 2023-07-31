@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { QuizModel } from "../QuizModel/QuizModel";
 
 import Form1View from "./Form1/Form1View";
 import Form2View from "./Form2/Form2View";
@@ -36,6 +37,37 @@ export default function FormPresenter() {
   const [form7IsVisible, setForm7IsVisible] = useState(false);
   const [exitAnimation, setExitAnimation] = useState(-300);
   const [currentForm, setCurrentForm] = useState(1);
+
+  let quizModel = new QuizModel();
+
+  const onSetNumberOfQuestions = (numberOfQuestions: number) => {
+    quizModel.setNumberOfQuestions(numberOfQuestions);
+  };
+
+  const onSetTheme = (quizTheme: string[]) => {
+    quizModel.setQuizTheme(quizTheme);
+  };
+
+  const onSetCountry = (country: string) => {
+    quizModel.setCountry(country);
+  };
+
+  const onSetFormat = (format: string[]) => {
+    quizModel.setFormat(format);
+  };
+
+  const onSetDifficulty = (difficulty: string) => {
+    quizModel.setDifficulty(difficulty);
+  };
+
+  const onSetVibe = (vibe: string) => {
+    quizModel.setVibe(vibe);
+  };
+
+  const onSetSpecificRequest = (specificRequest: string) => {
+    quizModel.setSpecificRequest(specificRequest);
+  };
+
   // let exitAnimation : number = -300;
 
   function toggleForward() {
@@ -105,6 +137,8 @@ export default function FormPresenter() {
   }
 
   function toggleForm(formNumber: number) {
+    console.log("quizmodel: ")
+    console.log(quizModel);
     if (currentForm > formNumber) {
       setExitAnimation(-300);
     } else {
@@ -234,7 +268,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form1View />
+              <Form1View numQuestions={quizModel.numberOfQuestions} setNumQuestions={onSetNumberOfQuestions}/>
             </motion.div>
           )}
           {form2IsVisible && (
@@ -245,7 +279,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form2View />
+              <Form2View themes={quizModel.quizTheme} setThemes={onSetTheme}/>
             </motion.div>
           )}
           {form3IsVisible && (
@@ -256,7 +290,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form3View />
+              <Form3View ctry={quizModel.country} setCtry={onSetCountry}/>
             </motion.div>
           )}
           {form4IsVisible && (
@@ -267,7 +301,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form4View />
+              <Form4View frmats={quizModel.format} setFrmats={onSetFormat}/>
             </motion.div>
           )}
           {form5IsVisible && (
@@ -278,7 +312,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form5View />
+              <Form5View diff={quizModel.difficulty} setDiff={onSetDifficulty}/>
             </motion.div>
           )}
           {form6IsVisible && (
@@ -289,7 +323,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form6View/>
+              <Form6View vbe={quizModel.vibe} setVbe={onSetVibe}/>
             </motion.div>
           )}
           {form7IsVisible && (
@@ -300,7 +334,7 @@ export default function FormPresenter() {
               exit={{ opacity: 0 }}
               className="questions"
             >
-              <Form7View/>
+              <Form7View req={quizModel.specificRequest} setReq={onSetSpecificRequest}/>
             </motion.div>
           )}
         </AnimatePresence>

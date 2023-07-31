@@ -1,12 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './Form6.css'
 
-export default function Form6View() {
-  const [vibe, setVibe] = useState<string>("");
+type Form6ViewProps = {
+  vbe: string;
+  setVbe: (vibe: string) => void;
+};
+
+export default function Form6View({
+  vbe,
+  setVbe,
+}: Form6ViewProps) {
+  const [vibe, setVibe] = useState<string>(vbe);
   const [vibeFunny, setVibeFunny] = useState<boolean>(false);
   const [vibeFormal, setVibeFormal] = useState<boolean>(false);
   const [vibeEducational, setVibeEducational] = useState<boolean>(false);
@@ -15,19 +23,32 @@ export default function Form6View() {
 const [formalNonHover, setFormalNonHover] = useState<boolean>(false);
 const [educationalNonHover, setEducationalNonHover] = useState<boolean>(false);
 
+  // only initial render
+  useEffect(() => {
+    if (vibe === "Funny") {
+      setVibeFunny(true);
+    } else if (vibe === "Formal") {
+      setVibeFormal(true);
+    } else if (vibe === "Educational") {
+      setVibeEducational(true);
+    }
+  }, []);
+
   const selectVibe = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     vibe: string
     ) => {
         setVibe(vibe);
+        setVbe(vibe);
         if (vibe === "Funny") {
             if (vibeFunny) {
                 setVibeFunny(false);
                 setVibe("");
+                setVbe("");
             }
             else {
                 setVibeFunny(true);
-                setVibe("Funny");
+
             }
             setVibeFormal(false);
             setVibeEducational(false);
@@ -35,6 +56,7 @@ const [educationalNonHover, setEducationalNonHover] = useState<boolean>(false);
             if (vibeFormal) {
                 setVibeFormal(false);
                 setVibe("");
+                setVbe("");
             }
             else {
                 setVibeFormal(true);
@@ -46,6 +68,7 @@ const [educationalNonHover, setEducationalNonHover] = useState<boolean>(false);
             if (vibeEducational) {
                 setVibeEducational(false);
                 setVibe("");
+                setVbe("");
             }
             else {
                 setVibeEducational(true);

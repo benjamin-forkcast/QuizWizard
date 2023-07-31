@@ -1,16 +1,37 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './Form5.css'
 
-export default function Form5View() {
-  const [difficulty, setDifficulty] = useState<string>("");
+type Form5ViewProps = {
+  diff: string;
+  setDiff: (diff: string) => void;
+};
+
+export default function Form5View({
+  diff,
+  setDiff,
+}: Form5ViewProps) {
+  const [difficulty, setDifficulty] = useState<string>(diff);
   const [difficultyEasy, setDifficultyEasy] = useState<boolean>(false);
   const [difficultyMedium, setDifficultyMedium] = useState<boolean>(false);
   const [difficultyHard, setDifficultyHard] = useState<boolean>(false);
   const [difficultyExtreme, setDifficultyExtreme] = useState<boolean>(false);
+
+  // only initial render
+  useEffect(() => {
+    if (difficulty === "Easy") {
+      setDifficultyEasy(true);
+    } else if (difficulty === "Medium") {
+      setDifficultyMedium(true);
+    } else if (difficulty === "Hard") {
+      setDifficultyHard(true);
+    } else if (difficulty === "Extreme") {
+      setDifficultyExtreme(true);
+    }
+  }, []);
 
   const [easyNonHover, setEasyNonHover] = useState<boolean>(false);
 const [mediumNonHover, setMediumNonHover] = useState<boolean>(false);
@@ -22,6 +43,7 @@ const [extremeNonHover, setExtremeNonHover] = useState<boolean>(false);
     difficulty: string
     ) => {
         setDifficulty(difficulty);
+        setDiff(difficulty);
         if (difficulty === "Easy") {
             if (difficultyEasy) {
                 setDifficultyEasy(false);
