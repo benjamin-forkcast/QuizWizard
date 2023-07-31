@@ -75,22 +75,25 @@ body {
   /*Evenly space out elements*/
   /* position: relative; */
   justify-content: space-evenly;
+  align-items: center;
   flex: 1.7;
   text-align: center;
   width: 100%;
   /* align-items: center; */
-  padding-top: 10px;
+  padding-top: 5px;
   color: rgba(255, 255, 255, 0.866);
   background-color: var(--menubar);
-  
+  transition: 0.5s;
 }
 
 .menuBar > div {
+  /* display: flex; */
+  /* flex-direction: row; */
   transition: 0.5s;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 130px;
+  width: 200px;
 }
 
 .menuBar > div:hover {
