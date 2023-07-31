@@ -8,6 +8,7 @@ import Form3View from "./Form3/Form3View";
 import Form4View from "./Form4/Form4View";
 import Form5View from "./Form5/Form5View";
 import Form6View from "./Form6/Form6View";
+import Form7View from "./Form7/Form7View";
 
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
@@ -32,6 +33,7 @@ export default function FormPresenter() {
   const [form4IsVisible, setForm4IsVisible] = useState(false);
   const [form5IsVisible, setForm5IsVisible] = useState(false);
   const [form6IsVisible, setForm6IsVisible] = useState(false);
+  const [form7IsVisible, setForm7IsVisible] = useState(false);
   const [exitAnimation, setExitAnimation] = useState(-300);
   const [currentForm, setCurrentForm] = useState(1);
   // let exitAnimation : number = -300;
@@ -60,6 +62,10 @@ export default function FormPresenter() {
       setCurrentForm(6);
     } else if (form6IsVisible) {
       setForm6IsVisible(false);
+      setForm7IsVisible(true);
+      setCurrentForm(7);
+    } else if (form7IsVisible) {
+      setForm7IsVisible(false);
       setForm1IsVisible(true);
       setCurrentForm(1);
     }
@@ -69,8 +75,8 @@ export default function FormPresenter() {
     setExitAnimation(-300);
     if (form1IsVisible) {
       setForm1IsVisible(false);
-      setForm6IsVisible(true);
-      setCurrentForm(6);
+      setForm7IsVisible(true);
+      setCurrentForm(7);
     } else if (form2IsVisible) {
       setForm2IsVisible(false);
       setForm1IsVisible(true);
@@ -91,6 +97,10 @@ export default function FormPresenter() {
       setForm6IsVisible(false);
       setForm5IsVisible(true);
       setCurrentForm(5);
+    } else if (form7IsVisible) {
+      setForm7IsVisible(false);
+      setForm6IsVisible(true);
+      setCurrentForm(6);
     }
   }
 
@@ -107,6 +117,7 @@ export default function FormPresenter() {
       setForm4IsVisible(false);
       setForm5IsVisible(false);
       setForm6IsVisible(false);
+      setForm7IsVisible(false);
       setCurrentForm(1);
     } else if (formNumber === 2) {
       setForm1IsVisible(false);
@@ -115,6 +126,7 @@ export default function FormPresenter() {
       setForm4IsVisible(false);
       setForm5IsVisible(false);
       setForm6IsVisible(false);
+      setForm7IsVisible(false);
       setCurrentForm(2);
     } else if (formNumber === 3) {
       setForm1IsVisible(false);
@@ -123,6 +135,7 @@ export default function FormPresenter() {
       setForm4IsVisible(false);
       setForm5IsVisible(false);
       setForm6IsVisible(false);
+      setForm7IsVisible(false);
       setCurrentForm(3);
     } else if (formNumber === 4) {
       setForm1IsVisible(false);
@@ -131,6 +144,7 @@ export default function FormPresenter() {
       setForm4IsVisible(true);
       setForm5IsVisible(false);
       setForm6IsVisible(false);
+      setForm7IsVisible(false);
       setCurrentForm(4);
     } else if (formNumber === 5) {
       setForm1IsVisible(false);
@@ -139,6 +153,7 @@ export default function FormPresenter() {
       setForm4IsVisible(false);
       setForm5IsVisible(true);
       setForm6IsVisible(false);
+      setForm7IsVisible(false);
       setCurrentForm(5);
     } else if (formNumber === 6) {
       setForm1IsVisible(false);
@@ -147,7 +162,17 @@ export default function FormPresenter() {
       setForm4IsVisible(false);
       setForm5IsVisible(false);
       setForm6IsVisible(true);
+      setForm7IsVisible(false);
       setCurrentForm(6);
+    } else if (formNumber === 7) {
+      setForm1IsVisible(false);
+      setForm2IsVisible(false);
+      setForm3IsVisible(false);
+      setForm4IsVisible(false);
+      setForm5IsVisible(false);
+      setForm6IsVisible(false);
+      setForm7IsVisible(true);
+      setCurrentForm(7);
     }
   }
 
@@ -267,6 +292,17 @@ export default function FormPresenter() {
               <Form6View/>
             </motion.div>
           )}
+          {form7IsVisible && (
+            <motion.div
+              key={7}
+              initial={{ x: exitAnimation, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="questions"
+            >
+              <Form7View/>
+            </motion.div>
+          )}
         </AnimatePresence>
         <div className='light x1'></div>
         <div className='light x2'></div>
@@ -286,6 +322,7 @@ export default function FormPresenter() {
         <IconButton aria-label="navigate-4th">{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
         <IconButton aria-label="navigate-5th">{currentForm===5&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(5)}/>}</IconButton>
         <IconButton aria-label="navigate-6th">{currentForm===6&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(6)}/>}</IconButton>
+        <IconButton aria-label="navigate-7th">{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
         <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
       <div>
