@@ -10,17 +10,22 @@ import Form4View from "./Form4/Form4View";
 import Form5View from "./Form5/Form5View";
 import Form6View from "./Form6/Form6View";
 import Form7View from "./Form7/Form7View";
+import SubmitFormView from "./Submission/SubmitFormView";
 
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import StorageIcon from '@mui/icons-material/Storage';
 import Person2Icon from '@mui/icons-material/Person2';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import SendIcon from '@mui/icons-material/Send';
 
 import IconButton from '@mui/material/IconButton';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import { Button } from "@mui/material";
 
 export default function FormPresenter() {
 
@@ -37,8 +42,9 @@ export default function FormPresenter() {
   const [form7IsVisible, setForm7IsVisible] = useState(false);
   const [exitAnimation, setExitAnimation] = useState(-300);
   const [currentForm, setCurrentForm] = useState(1);
+  const [submitQuizVisible, setSubmitQuizVisible] = useState(false);
 
-  let quizModel = new QuizModel();
+  const[quizModel,] = useState(new QuizModel());
 
   const onSetNumberOfQuestions = (numberOfQuestions: number) => {
     quizModel.setNumberOfQuestions(numberOfQuestions);
@@ -266,7 +272,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form1View numQuestions={quizModel.numberOfQuestions} setNumQuestions={onSetNumberOfQuestions}/>
             </motion.div>
@@ -277,7 +283,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form2View themes={quizModel.quizTheme} setThemes={onSetTheme}/>
             </motion.div>
@@ -288,7 +294,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form3View ctry={quizModel.country} setCtry={onSetCountry}/>
             </motion.div>
@@ -299,7 +305,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form4View frmats={quizModel.format} setFrmats={onSetFormat}/>
             </motion.div>
@@ -310,7 +316,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form5View diff={quizModel.difficulty} setDiff={onSetDifficulty}/>
             </motion.div>
@@ -321,7 +327,7 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form6View vbe={quizModel.vibe} setVbe={onSetVibe}/>
             </motion.div>
@@ -332,11 +338,21 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
               <Form7View req={quizModel.specificRequest} setReq={onSetSpecificRequest}/>
             </motion.div>
           )}
+          {submitQuizVisible && (
+            <motion.div
+              key={8}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+              className='submitPopup'
+            >
+              <SubmitFormView quizModel={quizModel}/>
+            </motion.div>)}
         </AnimatePresence>
         <div className='light x1'></div>
         <div className='light x2'></div>
@@ -359,8 +375,17 @@ export default function FormPresenter() {
         <IconButton aria-label="navigate-7th">{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
         <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
-      <div>
-        Submit
+      <div className="submitContainer">
+      {!submitQuizVisible ? <div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          Submit
+        </div>:
+        <div className="acceptContainer">
+        <div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          <CheckIcon style={{'color':'rgb(23, 177, 105)'}}/>
+        </div><div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          <CloseSharpIcon style={{'color':'rgb(196, 30, 58)'}}/>
+        </div>
+        </div>}
       </div>
     </div>
   );
