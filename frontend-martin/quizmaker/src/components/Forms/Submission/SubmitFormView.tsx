@@ -24,9 +24,9 @@ export default function SubmitFormView({ quizModel }: SubmitFormViewProps) {
   return (
     <div className="submission">
       <div>Number of Questions: {quizModel.numberOfQuestions}</div>
-      <div>Quiz Theme: {quizModel.quizTheme.map(elem => elem + ", ")}</div>
+      <div>Quiz Theme: {quizModel.quizTheme.map((elem, i) => <div key={i}>- {elem}</div>)}</div>
       <div>Country: {quizModel.country}</div>
-      <div>Format: {quizModel.format.map(elem => elem + ", ")}</div>
+      <div>Format: {quizModel.format.map((elem, i) => <div key={i}>- {elem}</div>)}</div>
       <div>Difficulty: {quizModel.difficulty}</div>
       <div>Vibe: {quizModel.vibe}</div>
       <div>Specific Request: {quizModel.specificRequest}</div>

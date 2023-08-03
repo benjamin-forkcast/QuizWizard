@@ -49,8 +49,10 @@ export default function Form2View({
   const handleFiltersChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (theme !== "" && event.key === "Enter") {
       const color = colors[Math.floor(Math.random() * colors.length)];
-      setFilters([...filters, { theme, color, showRemove: false }]);
-      setThemes([...themes, theme]);
+      const newFilters = [...filters, { theme, color, showRemove: false }];
+      setFilters(newFilters);
+      // Directly derive themes from the new filters
+      setThemes(newFilters.map((filter) => filter.theme));
       setTheme("");
     }
   };

@@ -52,6 +52,8 @@ export default function FormPresenter() {
 
   const onSetTheme = (quizTheme: string[]) => {
     quizModel.setQuizTheme(quizTheme);
+    console.log("Model:");
+    console.log(quizModel);
   };
 
   const onSetCountry = (country: string) => {
@@ -365,15 +367,15 @@ export default function FormPresenter() {
         <div className='light x9'></div>
       </div>
       <div className="navigate">
-        <IconButton aria-label="navigate-left"><ChevronLeftIcon onClick={toggleBackward}/></IconButton>
-        <IconButton aria-label="navigate-1st">{currentForm===1&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(1)}/>}</IconButton>
-        <IconButton aria-label="navigate-2nd">{currentForm===2&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(2)}/>}</IconButton>
-        <IconButton aria-label="navigate-3rd">{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
-        <IconButton aria-label="navigate-4th">{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
-        <IconButton aria-label="navigate-5th">{currentForm===5&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(5)}/>}</IconButton>
-        <IconButton aria-label="navigate-6th">{currentForm===6&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(6)}/>}</IconButton>
-        <IconButton aria-label="navigate-7th">{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
-        <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
+        <IconButton aria-label="navigate-left" disabled={submitQuizVisible} ><ChevronLeftIcon onClick={toggleBackward}/></IconButton>
+        <IconButton aria-label="navigate-1st" disabled={submitQuizVisible} >{currentForm===1&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(1)}/>}</IconButton>
+        <IconButton aria-label="navigate-2nd" disabled={submitQuizVisible} >{currentForm===2&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(2)}/>}</IconButton>
+        <IconButton aria-label="navigate-3rd" disabled={submitQuizVisible} >{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
+        <IconButton aria-label="navigate-4th" disabled={submitQuizVisible} >{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
+        <IconButton aria-label="navigate-5th" disabled={submitQuizVisible} >{currentForm===5&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(5)}/>}</IconButton>
+        <IconButton aria-label="navigate-6th" disabled={submitQuizVisible} >{currentForm===6&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(6)}/>}</IconButton>
+        <IconButton aria-label="navigate-7th" disabled={submitQuizVisible} >{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
+        <IconButton aria-label="navigate-right" disabled={submitQuizVisible} ><ChevronRightIcon onClick={toggleForward}/></IconButton>
       </div>
       <div className="submitContainer">
       {!submitQuizVisible ? <div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>

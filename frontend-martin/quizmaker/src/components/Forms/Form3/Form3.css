@@ -9,12 +9,13 @@
     align-items: center;
     width: 500px;
     height: 56px;
-    border: 1px solid rgb(77, 77, 77, 0.5);
+    /* border: 1px solid rgb(77, 77, 77, 0.5); */
     border-radius: 4px;
     font-weight: 400; 
     font-size: 25px;
     text-shadow: 0px 0px 10px rgba(103, 25, 221, 0.2);
-    background-color: var(--green);
+    /* background-color: var(--green); */
+    box-shadow: rgba(0, 255, 51, 0.35) 0px 8px 15px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .checkBox {
@@ -41,7 +42,8 @@
     width: 80px;
     justify-content: center;
     align-items: center;
-    background-color: var(--green);
+    background-color: transparent !important;
+    box-shadow: rgba(0, 255, 51, 0.35) 0px 24px 35px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     transition: 0.5s;
   }
   
