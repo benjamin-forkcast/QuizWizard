@@ -41,19 +41,26 @@ export default function Form2View({
   const [filters, setFilters] = React.useState<Filter[]>(themes.map((theme) => ({ theme, color: colors[Math.floor(Math.random() * colors.length)], showRemove: false })));
   const [removeIconVisible, setRemoveIconVisible] =
     React.useState<boolean>(false);
+  const [themeAmount, setThemeAmount] = React.useState<number>(0);
+  const [maxThemesReached, setMaxThemesReached] = React.useState<boolean>(false);
+
 
   const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTheme(event.target.value);
   };
 
   const handleFiltersChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (theme !== "" && event.key === "Enter") {
+    if (theme !== "" && event.key === "Enter" && themeAmount < 80) {
       const color = colors[Math.floor(Math.random() * colors.length)];
       const newFilters = [...filters, { theme, color, showRemove: false }];
       setFilters(newFilters);
       // Directly derive themes from the new filters
       setThemes(newFilters.map((filter) => filter.theme));
+      setThemeAmount(themeAmount + theme.length);
       setTheme("");
+    }
+    if (themeAmount >= 80) {
+      setMaxThemesReached(true);
     }
   };
 
@@ -73,8 +80,12 @@ export default function Form2View({
     newFilters.splice(index, 1);
     console.log("filters ", filters);
     console.log("new filters ", newFilters);
+    setThemeAmount(themeAmount - filters[index].theme.length);
     setFilters(newFilters);
     setThemes(newFilters.map((filter) => filter.theme));
+    if (themeAmount < 80) {
+      setMaxThemesReached(false);
+    }
   };
 
   const handleBubbleClick = (index: number) => {
@@ -84,7 +95,7 @@ export default function Form2View({
   };
 
   return (
-    <div>
+    <div className="form2">
       <div>
         <h1 style={{ textAlign: "center" }}>Quiz Theme</h1>
         <div>
@@ -96,6 +107,7 @@ export default function Form2View({
             onChange={handleThemeChange}
             onKeyDown={handleFiltersChange}
             sx={{ width: "500px" }}
+            autoComplete="off"
           />
         </div>
       </div>
@@ -120,6 +132,7 @@ export default function Form2View({
           ))}
         </AnimatePresence>
       </div>
+      {maxThemesReached ? <div> Max themes reached </div> : null}
     </div>
   );
 }

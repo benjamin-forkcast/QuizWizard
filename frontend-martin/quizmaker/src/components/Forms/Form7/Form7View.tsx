@@ -94,7 +94,7 @@ export default function Form2View({
           className="setRequest"
           initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1 , scale: [0.8, 0.9, 1.03, 1] }} transition={{ duration: 0.5 }}>{request}</motion.div>}
-          <div className={`${requestSet ? 'checkBoxClicked':'checkBox'} ${invalidSelection ? 'invalid-selection' : ''}`} onClick={selectRequest}>{!requestSet ? <CheckIcon/> : <EditIcon/>}</div>
+          <div className={`${requestSet ? 'checkBoxxClicked':'checkBoxx'} ${invalidSelection ? 'invalid-selection' : ''}`} onClick={selectRequest}>{!requestSet ? <CheckIcon/> : <EditIcon/>}</div>
         </div>
       </div>
     </div>
