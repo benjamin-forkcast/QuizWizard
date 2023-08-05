@@ -6,11 +6,16 @@
     
   } */
 
+.form2 {
+    height: 300px;
+}
+
 .themes {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
     overflow-x:auto;
+    flex-wrap: wrap;
     width: 500px;
 }
 

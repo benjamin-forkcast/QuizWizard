@@ -9,6 +9,7 @@ body {
   --main-background: radial-gradient(#a23982,#1f1013);
   --pink: #a23982;
   --off-white: rgb(255, 245, 196, 1);
+  --off-white-low: rgb(255, 245, 196, 0.3);
   --green: rgb(23, 177, 105);
   --red: rgb(196, 30, 58);
   --border: 1px solid rgba(0, 0, 0, 0.301);
@@ -403,6 +404,56 @@ left: 85%;
 .questions {
   /* border: 1px solid red; */
   position: absolute;
+  /* filter: blur(4px);  */
+}
+
+.questions.blur {
+  filter: blur(4px);
+}
+
+.submitContainer {
+  display: flex;
+  flex: 1.5;
+  margin-bottom: 30px;
+}
+
+.acceptContainer {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  justify-content: space-evenly;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  /* background-color: var(--off-white-low); */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 5px;
+  transition: 0.8s;
+}
+
+.submit:hover {
+  transform: scale3d(1.1, 1.1, 1);
+  border: var(--off-white) 1px solid;
+  color: white;
+  /*animation duration*/
+  transition: 0.8s;
+}
+
+.submitPopup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 
 
