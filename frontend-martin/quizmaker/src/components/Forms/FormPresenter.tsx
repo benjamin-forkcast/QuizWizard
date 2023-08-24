@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { QuizModel } from "../QuizModel/QuizModel";
 
 import Form1View from "./Form1/Form1View";
 import Form2View from "./Form2/Form2View";
@@ -9,17 +10,22 @@ import Form4View from "./Form4/Form4View";
 import Form5View from "./Form5/Form5View";
 import Form6View from "./Form6/Form6View";
 import Form7View from "./Form7/Form7View";
+import SubmitFormView from "./Submission/SubmitFormView";
 
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import SportsScoreIcon from '@mui/icons-material/SportsScore';
 import StorageIcon from '@mui/icons-material/Storage';
 import Person2Icon from '@mui/icons-material/Person2';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
+import SendIcon from '@mui/icons-material/Send';
 
 import IconButton from '@mui/material/IconButton';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import { Button } from "@mui/material";
 
 export default function FormPresenter() {
 
@@ -36,6 +42,40 @@ export default function FormPresenter() {
   const [form7IsVisible, setForm7IsVisible] = useState(false);
   const [exitAnimation, setExitAnimation] = useState(-300);
   const [currentForm, setCurrentForm] = useState(1);
+  const [submitQuizVisible, setSubmitQuizVisible] = useState(false);
+
+  const[quizModel,] = useState(new QuizModel());
+
+  const onSetNumberOfQuestions = (numberOfQuestions: number) => {
+    quizModel.setNumberOfQuestions(numberOfQuestions);
+  };
+
+  const onSetTheme = (quizTheme: string[]) => {
+    quizModel.setQuizTheme(quizTheme);
+    console.log("Model:");
+    console.log(quizModel);
+  };
+
+  const onSetCountry = (country: string) => {
+    quizModel.setCountry(country);
+  };
+
+  const onSetFormat = (format: string[]) => {
+    quizModel.setFormat(format);
+  };
+
+  const onSetDifficulty = (difficulty: string) => {
+    quizModel.setDifficulty(difficulty);
+  };
+
+  const onSetVibe = (vibe: string) => {
+    quizModel.setVibe(vibe);
+  };
+
+  const onSetSpecificRequest = (specificRequest: string) => {
+    quizModel.setSpecificRequest(specificRequest);
+  };
+
   // let exitAnimation : number = -300;
 
   function toggleForward() {
@@ -105,6 +145,8 @@ export default function FormPresenter() {
   }
 
   function toggleForm(formNumber: number) {
+    console.log("quizmodel: ")
+    console.log(quizModel);
     if (currentForm > formNumber) {
       setExitAnimation(-300);
     } else {
@@ -232,9 +274,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form1View />
+              <Form1View numQuestions={quizModel.numberOfQuestions} setNumQuestions={onSetNumberOfQuestions}/>
             </motion.div>
           )}
           {form2IsVisible && (
@@ -243,9 +285,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form2View />
+              <Form2View themes={quizModel.quizTheme} setThemes={onSetTheme}/>
             </motion.div>
           )}
           {form3IsVisible && (
@@ -254,9 +296,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form3View />
+              <Form3View ctry={quizModel.country} setCtry={onSetCountry}/>
             </motion.div>
           )}
           {form4IsVisible && (
@@ -265,9 +307,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form4View />
+              <Form4View frmats={quizModel.format} setFrmats={onSetFormat}/>
             </motion.div>
           )}
           {form5IsVisible && (
@@ -276,9 +318,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form5View />
+              <Form5View diff={quizModel.difficulty} setDiff={onSetDifficulty}/>
             </motion.div>
           )}
           {form6IsVisible && (
@@ -287,9 +329,9 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form6View/>
+              <Form6View vbe={quizModel.vibe} setVbe={onSetVibe}/>
             </motion.div>
           )}
           {form7IsVisible && (
@@ -298,11 +340,21 @@ export default function FormPresenter() {
               initial={{ x: exitAnimation, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="questions"
+              className={`questions ${submitQuizVisible ? 'blur' : ''}`}
             >
-              <Form7View/>
+              <Form7View req={quizModel.specificRequest} setReq={onSetSpecificRequest}/>
             </motion.div>
           )}
+          {submitQuizVisible && (
+            <motion.div
+              key={8}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
+              className='submitPopup'
+            >
+              <SubmitFormView quizModel={quizModel}/>
+            </motion.div>)}
         </AnimatePresence>
         <div className='light x1'></div>
         <div className='light x2'></div>
@@ -315,18 +367,27 @@ export default function FormPresenter() {
         <div className='light x9'></div>
       </div>
       <div className="navigate">
-        <IconButton aria-label="navigate-left"><ChevronLeftIcon onClick={toggleBackward}/></IconButton>
-        <IconButton aria-label="navigate-1st">{currentForm===1&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(1)}/>}</IconButton>
-        <IconButton aria-label="navigate-2nd">{currentForm===2&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(2)}/>}</IconButton>
-        <IconButton aria-label="navigate-3rd">{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
-        <IconButton aria-label="navigate-4th">{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
-        <IconButton aria-label="navigate-5th">{currentForm===5&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(5)}/>}</IconButton>
-        <IconButton aria-label="navigate-6th">{currentForm===6&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(6)}/>}</IconButton>
-        <IconButton aria-label="navigate-7th">{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
-        <IconButton aria-label="navigate-right"><ChevronRightIcon onClick={toggleForward}/></IconButton>
-      </div>
-      <div>
-        Submit
+        {/* <IconButton aria-label="navigate-left" disabled={submitQuizVisible} ><ChevronLeftIcon onClick={toggleBackward}/></IconButton> */}
+        <IconButton aria-label="navigate-1st" disabled={submitQuizVisible} >{currentForm===1&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(1)}/>}</IconButton>
+        <IconButton aria-label="navigate-2nd" disabled={submitQuizVisible} >{currentForm===2&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(2)}/>}</IconButton>
+        <IconButton aria-label="navigate-3rd" disabled={submitQuizVisible} >{currentForm===3&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(3)}/>}</IconButton>
+        <IconButton aria-label="navigate-4th" disabled={submitQuizVisible} >{currentForm===4&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(4)}/>}</IconButton>
+        <IconButton aria-label="navigate-5th" disabled={submitQuizVisible} >{currentForm===5&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(5)}/>}</IconButton>
+        <IconButton aria-label="navigate-6th" disabled={submitQuizVisible} >{currentForm===6&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(6)}/>}</IconButton>
+        <IconButton aria-label="navigate-7th" disabled={submitQuizVisible} >{currentForm===7&&<RadioButtonCheckedIcon/> || <RadioButtonUncheckedIcon onClick={(event) => toggleForm(7)}/>}</IconButton>
+        {/* <IconButton aria-label="navigate-right" disabled={submitQuizVisible} ><ChevronRightIcon onClick={toggleForward}/></IconButton> */}
+      </div> 
+      <div className="submitContainer">
+      {!submitQuizVisible ? <div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          Submit
+        </div>:
+        <div className="acceptContainer">
+        <div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          <CheckIcon style={{'color':'rgb(23, 177, 105)'}}/>
+        </div><div className="submit" onClick={() => setSubmitQuizVisible(!submitQuizVisible)}>
+          <CloseSharpIcon style={{'color':'rgb(196, 30, 58)'}}/>
+        </div>
+        </div>}
       </div>
     </div>
   );

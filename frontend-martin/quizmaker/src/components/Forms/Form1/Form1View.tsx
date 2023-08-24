@@ -13,26 +13,38 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import './Form1.css';
 import { IconButton } from '@mui/material';
 
-export default function Form1View() {
+type Form1ViewProps = {
+  numQuestions: number;
+  setNumQuestions: (value: number) => void;
+};
+
+export default function Form1View({
+  numQuestions,
+  setNumQuestions,
+}: Form1ViewProps) {
 
   //Custom event som skickar upp värdet till FormPresenter när modellen ska uppdateras?
-  const [numberOfQuestions, setNumberOfQuestions] = useState(1);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(numQuestions);
 
   const changeNumberOfQuestionsButtons = (change: number) => {
     if (numberOfQuestions + change >= 1) {
       setNumberOfQuestions(numberOfQuestions + change);
+      setNumQuestions(numberOfQuestions + change);
     }
     else {
       setNumberOfQuestions(1);
+      setNumQuestions(1);
     }
   }
 
   const changeNumberOfQuestionsInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(event.target.value) >= 1) {
       setNumberOfQuestions(Number(event.target.value));
+      setNumQuestions(Number(event.target.value));
     }
     else {
       setNumberOfQuestions(1);
+      setNumQuestions(1);
     }
   }
 
