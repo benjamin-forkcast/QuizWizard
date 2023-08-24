@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Get the OPENAI_API_KEY from the environment variable
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=[git 'POST'])
 def generate():
     try:
         # Get parameters from the request
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 def build_prompt(parameters):
     # Start the base prompt
     base_prompt = """You are an AI-powered quiz generator. You take input according to the criteria below to guide the generation of a unique quiz.
-   1. Number of questions - how many questions should the quiz consist of?
+    1. Number of questions - how many questions should the quiz consist of?
     2. Theme - what topic or topics should be included in the  quiz. All questions should not necessarily be pure trivia about the topic, but it can be interpreted a bit more loosely as well. For example, if the theme is fruit it could be fun to include a question about the company "Apple" too.
     3. Country - to which country does the audience belong? This is to ensure that the questions are relevant to the crowd. If the theme is sports, an Indian audience might be interested in questions about cricket, while these would be far too difficult for a Norwegian audience. Global is also an option here. Note that not all questions must be specific for a certain country.
     4. Format - what type of questions should be included? There are three options which can also be mixed, even within a single quiz: 1/X/2 (provide three alternatives referred to as 1, X, or 2 out of which one is correct), estimations (estimate a number, quantity, year etc. and points are awarded to the nearest answers), and plain trivia questions where alternatives are not presented. It is up to you to mix between the requested formats and to choose formats which suit the specific questions you include.
