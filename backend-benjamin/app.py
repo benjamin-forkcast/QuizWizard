@@ -2,44 +2,7 @@
 from flask import Flask, render_template, request
 import openai
 import os
-
-# Initialize the Flask application
-app = Flask(__name__)
-
-# Fetch the OpenAI API key from environment variables
-openai.api_key = os.getenv('OPENAI_API_KEY')
-
-@app.route('/generate', methods=['POST'])
-def generate():
-    try:
-        # Extract parameters from the incoming request
-        parameters = request.get_json(force=True)
-
-        # Return an error if no parameters are provided
-        if not parameters:
-            return {"error": "No parameters provided"}, 400
-
-        # Check for required parameters and return an error if any are missing
-        for param in ['number_of_questions', 'theme', 'country', 'format', 'difficulty', 'vibe', 'custom_request']:
-            if param not in parameters:
-                return {"error": f"Missing parameter: {param}"}, 400
-
-        # Generate a prompt based on the provided parameters
-        prompt = build_prompt(parameters)
-
-        # Make a request to the OpenAI API with the generated prompt
-        response = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=100)
-
-        # Process and return the OpenAI API response
-        return {"result": response['choices'][0]['text'].strip()}
-
-    # Handle any exceptions that arise and return an error message
-    except Exception as e:
-        return {"error": str(e)}, 500
-
-# Run the Flask app if this script is executed directly
-if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+from openai.error import OpenAIError
 
 # Utility function to generate a prompt based on provided parameters
 def build_prompt(parameters):
@@ -79,3 +42,48 @@ def build_prompt(parameters):
     full_prompt = f"{base_prompt}{request_prompt}"
 
     return full_prompt
+
+# Initialize the Flask application
+app = Flask(__name__)
+
+# Fetch the OpenAI API key from environment variables, also check that it exists
+openai_api_key = os.getenv('OPENAI_API_KEY')
+if not openai_api_key:
+    raise ValueError("The OPENAI_API_KEY environment variable is not set!")
+openai.api_key = openai_api_key
+
+@app.route('/generate', methods=['POST'])
+def generate():
+    try:
+        # Extract parameters from the incoming request
+        parameters = request.get_json(force=True)
+
+        # Return an error if no parameters are provided
+        if not parameters:
+            return {"error": "No parameters provided"}, 400
+
+        # Check for required parameters and return an error if any are missing
+        for param in ['number_of_questions', 'theme', 'country', 'format', 'difficulty', 'vibe', 'custom_request']:
+            if param not in parameters:
+                return {"error": f"Missing parameter: {param}"}, 400
+
+        # Generate a prompt based on the provided parameters
+        prompt = build_prompt(parameters)
+
+        # Make a request to the OpenAI API with the generated prompt
+        response = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=1000)
+
+        # Process and return the OpenAI API response
+        return {"result": response['choices'][0]['text'].strip()}
+
+    # Handle any exceptions that arise and return an error message
+    except OpenAIError as oai_error:
+        return {"error": f"OpenAI Error: {str(oai_error)}"}, 500
+    except ValueError as ve:
+        return {"error": f"Value Error: {str(ve)}"}, 400
+    except Exception as e:
+        return {"error": f"General Error: {str(e)}"}, 500
+
+# Run the Flask app if this script is executed directly
+if __name__ == '__main__':
+    app.run(port=5000, debug=True)
