@@ -9,16 +9,18 @@ load_dotenv()
 # Utility function to generate a prompt based on provided parameters
 def build_prompt(parameters):
     # Define the base prompt
-    base_prompt = """You are an AI-powered quiz generator. You take input according to the criteria below to guide the generation of a unique quiz.
-    1. Number of questions - how many questions should the quiz consist of?
-    2. Theme - what topic or topics should be included in the  quiz. All questions should not necessarily be pure trivia about the topic, but it can be interpreted a bit more loosely as well. For example, if the theme is fruit it could be fun to include a question about the company "Apple" too.
-    3. Country - to which country does the audience belong? This is to ensure that the questions are relevant to the crowd. If the theme is sports, an audience from India might be more interested in cricket than baseball. However, it can also mean that questions about local phenomena can be included.
-    4. Format - should the questions be multiple choice, open-ended, or something else? Multiple choice is generally easier to answer and therefore often of lower difficulty.
-    5. Difficulty - how difficult should the questions be? They can range from very easy to very difficult, but keep in mind that even a very difficult question should be possible to answer.
-    6. Vibe - should the quiz be humorous, serious, or something else? This can affect the type of questions that are generated.
+    base_prompt = """You are a quiz generator. Generate a quiz based on the parameters below.
+    1. Number of questions - generate exactly this many questions.
+    2. Theme - generate questions around this topic. It can occasionally be interpreted loosely.
+    3. Country - try to generate questions that are relevant to people from this country.
+    4. Format - generate questions in this format. It can be multiple choice, true/false, fill in the blank, or something else.
+    5. Difficulty - expect this level of skill from the participants. Remember that no question should be obvious to everyone, and none should be impossible for everyone.
+    6. Vibe - apply this toone in the quiz.
     7. Custom request - any other specific requirements or requests for the quiz.
-    Please avoid obvious questions no matter the difficulty. Do not ask what is bigger of an elephant, a mouse or a fruit fly or anything of that sort. Consider what is "common knowledge" for the audience and avoid anything that falls in that category. Please make sure that the question does not automatically reveal the answer. For example, you cannot ask what kind of animal a "brown bear" is, since the name reveals that it is a bear. Consider the same thing even if the name is a translation to another language, for example you cannot ask what kind of animal a "brunbjörn" is either, since "björn" means bear in Swedish.
-    Please also avoid anything overly specific. Even a soccer expert would not know when a small local football club in Armenia was founded, so such questions can not be included. There should be a good chance that some contestant knows the answer to every question. Please make sure that any persons, phenomena, products, brands etc. that you ask about are well-established and known to a reasonably wide audience.
+    Please avoid anything overly specific. Even a soccer expert would not know when a small local football club in Armenia was founded, so such questions can not be included. There should be a good chance that some contestant knows the answer to every question. Please make sure that any persons, phenomena, products, brands etc. that you ask about are well-established and known to a reasonably wide audience.
+    Make sure that alternatives, when they are provided, differ fairly significantly from each other.
+    Number all questions and remember to provide answers.
+    Again, provide answers to every question.
     I now want you to generate a quiz according to the following parameters:"""
 
     # Format the user's parameters into the request

@@ -12,7 +12,7 @@ openai.api_key = openai_api_key
 
 # Mock parameters
 mock_parameters = {
-    'number_pythoof_questions': '5',
+    'number_of_questions': '5',
     'theme': 'fruit',
     'country': 'US',
     'format': 'multiple choice',
@@ -25,7 +25,7 @@ mock_parameters = {
 prompt = build_prompt(mock_parameters)
 
 # Request a quiz from OpenAI
-response = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=1000)
+response = openai.Completion.create(engine="text-davinci-002", prompt=prompt, max_tokens=3200)
 
 # Print the quiz result
 print(response['choices'][0]['text'].strip())
