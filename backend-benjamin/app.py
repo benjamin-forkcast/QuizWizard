@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 import openai
 import os
 from openai.error import OpenAIError
+from dotenv import load_dotenv
+load_dotenv()
 
 # Utility function to generate a prompt based on provided parameters
 def build_prompt(parameters):
